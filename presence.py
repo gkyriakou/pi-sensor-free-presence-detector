@@ -6,10 +6,10 @@ import requests
 from requests.auth import HTTPDigestAuth
 
 # Edit these for how many people/devices you want to track
-occupant = ["George","Lafina","Porter","Giannis","Ntina"]
+occupant = ["Alan","Bob","Porter","Jay","Funny"]
 
 # MAC addresses for our phones
-address = ["78:4f:43:0b:6d:13","a4:b8:05:c6:2b:11","9c:f4:8e:24:cc:6f","88:83:22:98:c8:22","ec:10:7b:19:99:27"]
+address = ["xx:xx:xx:xx:xx:xx","xx:xx:xx:xx:xx:xx","xx:xx:xx:xx:xx:xx","xx:xx:xx:xx:xx:xx","xx:xx:xx:xx:xx:xx"]
 
 # Sleep once right when this script is called to give the Pi enough time
 # to connect to the network
@@ -17,7 +17,7 @@ sleep(60)
 
 # Initialize the Initial State streamer
 # Be sure to add your unique access key
-streamer = Streamer(bucket_name=":office:Who's at the Office?", bucket_key="office_presence", access_key="BYlqLZ7q4I5clh1pG2O3k9ql0EmHvbG9")
+streamer = Streamer(bucket_name=":office:Who's at the Office?", bucket_key="office_presence", access_key="your access key here")
 
 # Some arrays to help minimize streaming and account for devices
 # disappearing from the network when asleep
@@ -122,13 +122,13 @@ try:
 		print "There are currently ", sum(presentSent), " people at home."
 		if not was_above_threshold:
 			was_above_threshold = True
-			requests.post('http://192.168.1.217/cgi-bin/set_miner_conf.cgi', data = (('_ant_pool1url','stratum+tcp://stratum.antpool.com:3333'), ('_ant_pool1user','worm1337.antminers7'), ('_ant_pool1pw',' '), ('_ant_pool2url','stratum+tcp://stratum.antpool.com:443'), ('_ant_pool2user','worm1337.antminers7'), ('_ant_pool2pw',' '), ('_ant_pool3url','stratum+tcp://stratum.antpool.com:25'), ('_ant_pool3user','worm1337.antminers7'), ('_ant_pool3pw',' '), ('_ant_nobeeper','false'), ('_ant_notempoverctrl','false'), ('_ant_fan_customize_switch','true'), ('_ant_fan_customize_value','100'), ('_ant_freq','700')), auth=HTTPDigestAuth('root', 'root'))
+			requests.post('http://xxx.xxx.xxx.xxx/cgi-bin/set_miner_conf.cgi', data = (('_ant_pool1url','stratum+tcp://stratum.antpool.com:3333'), ('_ant_pool1user','worm1337.antminers7'), ('_ant_pool1pw',' '), ('_ant_pool2url','stratum+tcp://stratum.antpool.com:443'), ('_ant_pool2user','worm1337.antminers7'), ('_ant_pool2pw',' '), ('_ant_pool3url','stratum+tcp://stratum.antpool.com:25'), ('_ant_pool3user','worm1337.antminers7'), ('_ant_pool3pw',' '), ('_ant_nobeeper','false'), ('_ant_notempoverctrl','false'), ('_ant_fan_customize_switch','true'), ('_ant_fan_customize_value','100'), ('_ant_freq','700')), auth=HTTPDigestAuth('root', 'root'))
 
 	else:
 		print "There are crrently ", sum(presentSent), " people at home. We need more to make some noise!"
 		if was_above_threshold:
 			was_above_threshold = False
-			requests.post('http://192.168.1.217/cgi-bin/set_miner_conf.cgi', data = (('_ant_pool1url','stratum+tcp://stratum.antpool.com:3333'), ('_ant_pool1user','worm1337.antminers7'), ('_ant_pool1pw',' '), ('_ant_pool2url','stratum+tcp://stratum.antpool.com:443'), ('_ant_pool2user','worm1337.antminers7'), ('_ant_pool2pw',' '), ('_ant_pool3url','stratum+tcp://stratum.antpool.com:25'), ('_ant_pool3user','worm1337.antminers7'), ('_ant_pool3pw',' '), ('_ant_nobeeper','false'), ('_ant_notempoverctrl','false'), ('_ant_fan_customize_switch','true'), ('_ant_fan_customize_value','42'), ('_ant_freq','350')), auth=HTTPDigestAuth('root', 'root'))
+			requests.post('http://xxx.xxx.xxx.xxx/cgi-bin/set_miner_conf.cgi', data = (('_ant_pool1url','stratum+tcp://stratum.antpool.com:3333'), ('_ant_pool1user','worm1337.antminers7'), ('_ant_pool1pw',' '), ('_ant_pool2url','stratum+tcp://stratum.antpool.com:443'), ('_ant_pool2user','worm1337.antminers7'), ('_ant_pool2pw',' '), ('_ant_pool3url','stratum+tcp://stratum.antpool.com:25'), ('_ant_pool3user','worm1337.antminers7'), ('_ant_pool3pw',' '), ('_ant_nobeeper','false'), ('_ant_notempoverctrl','false'), ('_ant_fan_customize_switch','true'), ('_ant_fan_customize_value','42'), ('_ant_freq','350')), auth=HTTPDigestAuth('root', 'root'))
 
         # Wait 30 seconds between scans
         sleep(30)
